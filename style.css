@@ -1,20 +1,23 @@
+<style>
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
+    color: #333;
 }
 
 .sidebar {
     width: 20%;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 20px;
+    color: #555;
 }
 
 .sidebar ul {
@@ -23,33 +26,52 @@ body {
 }
 
 .sidebar ul li {
-    margin: 10px 0;
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
 }
 
 .main {
     width: 80%;
-    padding: 20px;
+    padding: 40px;
+    background-color: #ffffff;
 }
 
-.input-container {
+.main h1 {
+    font-size: 2em;
+    color: #222;
     margin-bottom: 20px;
 }
 
+.input-container {
+    margin-bottom: 30px;
+}
+
 .input-container input {
-    width: 80%;
-    padding: 10px;
+    width: 70%;
+    padding: 12px;
     margin-right: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1em;
 }
 
 .input-container button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1em;
     cursor: pointer;
+}
+
+.input-container button:hover {
+    background-color: #0056b3;
 }
 
 table {
@@ -63,8 +85,9 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
+    font-size: 1em;
 }
 
 th {
@@ -73,22 +96,24 @@ th {
 
 .ai-analysis {
     margin-top: 30px;
-    padding: 15px;
+    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .ai-analysis h3 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #333;
 }
 
 .ai-analysis p {
-    margin: 5px 0;
+    margin: 10px 0;
+    font-size: 1em;
 }
 
 .product-link {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -96,4 +121,54 @@ th {
     color: #007BFF;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1em;
 }
+
+.product-link a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<h2>Catégories</h2>
+<ul>
+    <li><a href="#">Électroménager</a></li>
+    <li><a href="#">Alimentation</a></li>
+    <li><a href="#">Cosmétique</a></li>
+    <li><a href="#">Mode</a></li>
+</ul>
+</div>
+
+<div class="main">
+<h1>Comparer des Produits</h1>
+
+<div class="input-container">
+    <input type="text" id="product-url" placeholder="Entrez l'URL du produit">
+    <button onclick="addProduct()">Ajouter le produit</button>
+</div>
+
+<table id="comparison-table">
+    <thead>
+        <tr>
+            <th>Caractéristique</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Les lignes de caractéristiques s'afficheront ici -->
+    </tbody>
+</table>
+
+<div class="ai-analysis" id="ai-analysis" style="display: none;">
+    <h3>Analyse de l'IA</h3>
+    <p><strong>Meilleur rapport qualité/prix :</strong> <span id="best-value"></span></p>
+    <p><strong>Produit le plus sain :</strong> <span id="healthiest"></span></p>
+    <p><strong>Meilleure qualité :</strong> <span id="highest-quality"></span></p>
+</div>
+
+<div class="product-link" id="product-link" style="display: none;">
+    <a href="#" target="_blank">Voir l'offre la moins chère</a>
+</div>
+</div>
+
+<script src="script.js"></script>
