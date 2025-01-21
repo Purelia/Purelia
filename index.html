@@ -1,53 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site de Comparaison de Produits</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparateur de Produits</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Catégories</h2>
-        <ul>
-            <li><a href="#">Électroménager</a></li>
-            <li><a href="#">Alimentation</a></li>
-            <li><a href="#">Cosmétique</a></li>
-            <li><a href="#">Mode</a></li>
-        </ul>
+  <header>
+    <h1>Comparateur de Produits</h1>
+  </header>
+
+  <main>
+    <div id="sidebar">
+      <h2>Catégories</h2>
+      <ul id="categories">
+        <li><a href="#">Électroménager</a></li>
+        <li><a href="#">Alimentation</a></li>
+        <li><a href="#">Cosmétique</a></li>
+        <li><a href="#">Mode</a></li>
+      </ul>
     </div>
 
-    <div class="main">
-        <h1>Comparer des Produits</h1>
+    <div id="product-comparison">
+      <h2>Comparer des produits</h2>
+      <input type="url" id="product-url" placeholder="Entrez l'URL d'un produit" />
+      <button onclick="addProduct()">Ajouter le produit</button>
 
-        <div class="input-container">
-            <input type="text" id="product-url" placeholder="Entrez l'URL du produit">
-            <button onclick="addProduct()">Ajouter le produit</button>
-        </div>
-
+      <div id="comparison-table-container">
         <table id="comparison-table">
-            <thead>
-                <tr>
-                    <th>Caractéristique</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Les lignes de caractéristiques s'afficheront ici -->
-            </tbody>
+          <thead>
+            <tr>
+              <th>Caractéristiques</th>
+              <!-- Les colonnes des produits seront ajoutées ici -->
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Les caractéristiques des produits seront affichées ici -->
+          </tbody>
         </table>
+      </div>
 
-        <div class="ai-analysis" id="ai-analysis" style="display: none;">
-            <h3>Analyse de l'IA</h3>
-            <p><strong>Meilleur rapport qualité/prix :</strong> <span id="best-value"></span></p>
-            <p><strong>Produit le plus sain :</strong> <span id="healthiest"></span></p>
-            <p><strong>Meilleure qualité :</strong> <span id="highest-quality"></span></p>
-        </div>
+      <div id="ai-analysis">
+        <h3>Analyse par IA</h3>
+        <p><strong>Meilleur rapport qualité/prix:</strong> Produit X</p>
+        <p><strong>Produit le plus sain:</strong> Produit Y</p>
+        <p><strong>Produit de meilleure qualité:</strong> Produit Z</p>
+      </div>
 
-        <div class="product-link" id="product-link" style="display: none;">
-            <a href="#" target="_blank">Voir l'offre la moins chère</a>
-        </div>
+      <div id="cheapest-link">
+        <a href="#" id="cheapest-offer-link">Voir l'offre la moins chère</a>
+      </div>
     </div>
+  </main>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
