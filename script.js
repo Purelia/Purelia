@@ -23,7 +23,7 @@ function fetchProductData(url) {
       name: `Produit ${products.length + 1}`,
       characteristics: {
         'Prix': `${Math.random() * 100}€`,
-        'Composants': 'Exemple Composant 1, Composant 2',
+        'Composants': ['Composant 1', 'Composant 2', 'Composant 3'], // Liste des composants
         'Poids': `${(Math.random() * 10).toFixed(2)} kg`,
         'Dimensions': `${(Math.random() * 50).toFixed(1)} x ${(Math.random() * 50).toFixed(1)} cm`,
         'Durabilité': `${Math.random() > 0.5 ? 'Haute' : 'Moyenne'}`,
@@ -51,7 +51,12 @@ function updateComparisonTable() {
   characteristics.forEach(characteristic => {
     let row = `<td>${characteristic}</td>`;
     products.forEach(product => {
-      row += `<td>${product.characteristics[characteristic]}</td>`;
+      if (characteristic === 'Composants') {
+        // Afficher la liste des composants sous forme de texte
+        row += `<td>${product.characteristics[characteristic].join(', ')}</td>`;
+      } else {
+        row += `<td>${product.characteristics[characteristic]}</td>`;
+      }
     });
     bodyRows += `<tr>${row}</tr>`;
   });
@@ -60,8 +65,6 @@ function updateComparisonTable() {
 
 // Fonction pour analyser les produits avec une IA simulée
 function analyzeWithAI() {
-  // Cette fonction analyse les produits et affiche les résultats sur la page
-
   let bestValueForMoney = products[0];
   let healthiestProduct = products[0];
   let bestQualityProduct = products[0];
