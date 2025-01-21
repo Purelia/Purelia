@@ -1,4 +1,4 @@
-// script.js
+// Variables globales
 let products = [];
 let characteristics = [
   'Prix', 'Composants', 'Poids', 'Dimensions', 'Durabilité', 'Sain'
@@ -10,6 +10,7 @@ function addProduct() {
     fetchProductData(url).then(product => {
       products.push(product);
       updateComparisonTable();
+      analyzeWithAI();  // Lancer l'analyse IA après chaque ajout de produit
     });
   }
 }
@@ -57,12 +58,34 @@ function updateComparisonTable() {
   tableBody.innerHTML = bodyRows;
 }
 
-// Simuler l'analyse IA (cette partie devra être intégrée avec une solution IA réelle)
-document.getElementById('ai-analysis').innerHTML = `
-  <h3>Analyse par IA</h3>
-  <p><strong>Meilleur rapport qualité/prix:</strong> Produit 1</p>
-  <p><strong>Produit le plus sain:</strong> Produit 2</p>
-  <p><strong>Produit de meilleure qualité:</strong> Produit 3</p>
-`;
+// Fonction pour analyser les produits avec une IA simulée
+function analyzeWithAI() {
+  // Cette fonction analyse les produits et affiche les résultats sur la page
 
+  let bestValueForMoney = products[0];
+  let healthiestProduct = products[0];
+  let bestQualityProduct = products[0];
+
+  products.forEach(product => {
+    // Simple logique de comparaison pour illustration
+    if (parseFloat(product.characteristics['Prix']) < parseFloat(bestValueForMoney.characteristics['Prix'])) {
+      bestValueForMoney = product;
+    }
+
+    if (product.characteristics['Sain'] === 'Oui' && healthiestProduct.characteristics['Sain'] === 'Non') {
+      healthiestProduct = product;
+    }
+
+    if (product.characteristics['Durabilité'] === 'Haute') {
+      bestQualityProduct = product;
+    }
+  });
+
+  // Affichage des résultats de l'analyse IA dans les sections
+  document.getElementById('best-value-for-money').innerHTML = `<strong>Meilleur rapport qualité/prix:</strong> ${bestValueForMoney.name}`;
+  document.getElementById('healthiest-product').innerHTML = `<strong>Produit le plus sain:</strong> ${healthiestProduct.name}`;
+  document.getElementById('best-quality-product').innerHTML = `<strong>Produit de meilleure qualité:</strong> ${bestQualityProduct.name}`;
+}
+
+// Exemple d'intégration pour l'offre la moins chère
 document.getElementById('cheapest-offer-link').href = "https://example.com";
