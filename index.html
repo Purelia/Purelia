@@ -1,111 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Comparaison de Produits</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .sidebar {
-            width: 20%;
-            background-color: #f4f4f4;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar h2 {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin: 10px 0;
-        }
-
-        .main {
-            width: 80%;
-            padding: 20px;
-        }
-
-        .input-container {
-            margin-bottom: 20px;
-        }
-
-        .input-container input {
-            width: 80%;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .input-container button {
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        .ai-analysis {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .ai-analysis h3 {
-            margin-bottom: 10px;
-        }
-
-        .ai-analysis p {
-            margin: 5px 0;
-        }
-
-        .product-link {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .product-link a {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="sidebar">
@@ -149,58 +48,6 @@
         </div>
     </div>
 
-    <script>
-        let products = [];
-
-        function addProduct() {
-            const url = document.getElementById('product-url').value;
-            if (url) {
-                products.push(url);
-                updateTable();
-                document.getElementById('product-url').value = '';
-            }
-        }
-
-        function updateTable() {
-            const table = document.getElementById('comparison-table');
-            const tbody = table.querySelector('tbody');
-            tbody.innerHTML = '';
-
-            const features = {};
-
-            products.forEach((product, index) => {
-                const column = document.createElement('th');
-                column.textContent = `Produit ${index + 1}`;
-                table.querySelector('thead tr').appendChild(column);
-
-                // Simuler des caractéristiques (temporaire, remplacé par un backend plus tard)
-                const sampleFeatures = {
-                    Prix: `${Math.floor(Math.random() * 100)}€`,
-                    Qualité: `${Math.floor(Math.random() * 10)}/10`,
-                    "Durabilité": `${Math.floor(Math.random() * 5)} ans`,
-                };
-
-                for (const [key, value] of Object.entries(sampleFeatures)) {
-                    if (!features[key]) features[key] = [];
-                    features[key][index] = value;
-                }
-            });
-
-            for (const [feature, values] of Object.entries(features)) {
-                const row = document.createElement('tr');
-                const featureCell = document.createElement('td');
-                featureCell.textContent = feature;
-                row.appendChild(featureCell);
-
-                products.forEach((_, index) => {
-                    const valueCell = document.createElement('td');
-                    valueCell.textContent = values[index] || '-';
-                    row.appendChild(valueCell);
-                });
-
-                tbody.appendChild(row);
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
